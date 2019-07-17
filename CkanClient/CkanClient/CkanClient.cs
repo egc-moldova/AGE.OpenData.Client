@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Ckan
 {
-	class CkanClient
+	public class CkanClient
 	{
 		//int api_version = 3;
 		string endpoint;

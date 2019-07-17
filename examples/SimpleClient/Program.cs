@@ -1,9 +1,4 @@
-# AGE.OpenData.Client
-C# client for date.gov.md
-
-Example of usage:
-```c#
-using System;
+﻿using System;
 using Ckan;
 
 namespace SimpleClient
@@ -19,4 +14,3 @@ namespace SimpleClient
 		}
 	}
 }
-```
