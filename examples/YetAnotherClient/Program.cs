@@ -27,7 +27,8 @@ namespace YetAnotherClient
 			}
 
 			// show info about first selected package
-			AGE.OpenData.PackageShow package = Json.Decode<AGE.OpenData.PackageShow>(client.package_show(packageList.result[0]));
+			string package_name = "4784-date-statistice-privind-persoanele-anuntate-in-cautare-si-retinute-care-au-savirsit-infractiuni";
+			AGE.OpenData.PackageShow package = Json.Decode<AGE.OpenData.PackageShow>(client.package_show(package_name));
 			if (package.success == false)
 			{
 				Console.WriteLine("unknown error.");
