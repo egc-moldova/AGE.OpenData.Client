@@ -43,6 +43,7 @@ namespace YetAnotherClient
 			foreach(var resource in package.result.resources)
 			{
 				Console.WriteLine("\t\tname: " + resource.name);
+				Console.WriteLine("\t\tID: " + resource.id);
 				Console.WriteLine("\t\ttype: " + resource.resource_type);
 				Console.WriteLine("\t\tformat: " + resource.format);
 				Console.WriteLine("\t\turl: " + resource.url);

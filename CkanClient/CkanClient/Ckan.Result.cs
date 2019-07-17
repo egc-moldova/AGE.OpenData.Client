@@ -12,12 +12,12 @@ namespace Ckan
 	public class Resource
 	{
 		public string resource_group_id { get; set; }
-		public object cache_last_updated { get; set; }
-		public DateTime revision_timestamp { get; set; }
-		public object webstore_last_updated { get; set; }
+		public DateTime? cache_last_updated { get; set; }
+		public DateTime? revision_timestamp { get; set; }
+		public DateTime? webstore_last_updated { get; set; }
 		public bool datastore_active { get; set; }
 		public string id { get; set; }
-		public object size { get; set; }
+		public int? size { get; set; }
 		public string date_from { get; set; }
 		public string state { get; set; }
 		public string hash { get; set; }
@@ -135,5 +135,12 @@ namespace Ckan
 		public string help { get; set; }
 		public bool success { get; set; }
 		public List<string> result { get; set; }
+	}
+
+	public class ResourceShow
+	{
+		public string help { get; set; }
+		public bool success { get; set; }
+		public Resource result { get; set; }
 	}
 }
