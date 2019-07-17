@@ -12,6 +12,7 @@ namespace SimpleClient
 	{
 		static void Main(string[] args)
 		{
+			// reference to CKAN service
 			string uri = "http://date.gov.md/ckan/api/3/";
 			CkanClient client = new CkanClient(uri);
 			// obtain names of first 10 packages
@@ -20,3 +21,5 @@ namespace SimpleClient
 	}
 }
 ```
+
+Common CKAN API is available on [CKAN project site](https://docs.ckan.org/en/latest/api/index.html#).
