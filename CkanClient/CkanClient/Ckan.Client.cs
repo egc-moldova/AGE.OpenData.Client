@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Ckan
 {
-	public class CkanClient
+	public class Client
 	{
 		//int api_version = 3;
 		string endpoint;
@@ -19,7 +19,7 @@ namespace Ckan
 		/// </summary>
 		/// <param name="Endpoint"Reference to CKAN service</param>
 		/// <param name="auth">Authentication key</param>
-		public CkanClient(string Endpoint, string auth = null)
+		public Client(string Endpoint, string auth = null)
 		{
 			endpoint = Endpoint;
 			authentication = auth;
