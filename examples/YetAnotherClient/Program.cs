@@ -8,9 +8,9 @@ namespace YetAnotherClient
 		static void Main(string[] args)
 		{
 			string uri = "http://date.gov.md/ckan/api/3/";
-			Ckan.Client client = new Ckan.Client(uri);
+			AGE.OpenData.Client client = new AGE.OpenData.Client(uri);
 			// obtain names of second 10 packages
-			Ckan.PackageList packageList = Json.Decode<Ckan.PackageList>(client.package_list(10, 10));
+			AGE.OpenData.PackageList packageList = Json.Decode<AGE.OpenData.PackageList>(client.package_list(10, 10));
 
 			// if request was failed, show error message
 			if (packageList.success == false)
@@ -27,7 +27,7 @@ namespace YetAnotherClient
 			}
 
 			// show info about first selected package
-			Ckan.PackageShow package = Json.Decode<Ckan.PackageShow>(client.package_show(packageList.result[0]));
+			AGE.OpenData.PackageShow package = Json.Decode<AGE.OpenData.PackageShow>(client.package_show(packageList.result[0]));
 			if (package.success == false)
 			{
 				Console.WriteLine("unknown error.");

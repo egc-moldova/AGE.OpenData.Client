@@ -6,7 +6,7 @@ C# client for date.gov.md
 Example of usage:
 ```c#
 using System;
-using Ckan;
+using AGE;
 
 namespace SimpleClient
 {
@@ -14,9 +14,9 @@ namespace SimpleClient
 	{
 		static void Main(string[] args)
 		{
-			// reference to CKAN service
+			// reference to service
 			string uri = "http://date.gov.md/ckan/api/3/";
-			Ckan.Client client = new Ckan.Client(uri);
+			AGE.OpenData.Client client = new AGE.OpenData.Client(uri);
 			// obtain names of first 10 packages
 			Console.WriteLine(client.package_list(10));
 		}
@@ -29,9 +29,9 @@ Common CKAN API is available on [CKAN project site](https://docs.ckan.org/en/lat
 Ckan Client returns as responce JSON string. You can parse it:
 ```c#
 string uri = "http://date.gov.md/ckan/api/3/";
-Ckan.Client client = new Ckan.Client(uri);
+AGE.OpenData.Client client = new AGE.OpenData.Client(uri);
 // obtain names of second 10 packages
-Ckan.PackageList packageList = Json.Decode<Ckan.PackageList>(client.package_list(10, 10));
+AGE.OpenData.PackageList packageList = Json.Decode<AGE.OpenData.PackageList>(client.package_list(10, 10));
 
 // if request was failed, show error message
 if (packageList.success == false)
@@ -48,7 +48,7 @@ foreach (var packageName in packageList.result)
 }
 
 // show info about first selected package
-Ckan.PackageShow package = Json.Decode<Ckan.PackageShow>(client.package_show(packageList.result[0]));
+AGE.OpenData.PackageShow package = Json.Decode<AGE.OpenData.PackageShow>(client.package_show(packageList.result[0]));
 if (package.success == false)
 {
 	Console.WriteLine("unknown error.");

@@ -69,9 +69,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\CkanClient\CkanClient\CkanClient.csproj">
+    <ProjectReference Include="..\..\CkanClient\CkanClient\OpenDataClient.csproj">
       <Project>{0507d0e9-197e-4c67-8fba-abd132cb55ce}</Project>
-      <Name>CkanClient</Name>
+      <Name>OpenDataClient</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
