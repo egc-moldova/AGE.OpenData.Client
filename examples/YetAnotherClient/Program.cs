@@ -27,8 +27,7 @@ namespace YetAnotherClient
 			}
 
 			// show info about first selected package
-			string package_name = "4784-date-statistice-privind-persoanele-anuntate-in-cautare-si-retinute-care-au-savirsit-infractiuni";
-			AGE.OpenData.PackageShow package = Json.Decode<AGE.OpenData.PackageShow>(client.package_show(package_name));
+			AGE.OpenData.PackageShow package = Json.Decode<AGE.OpenData.PackageShow>(client.package_show(packageList.result[0]));
 			if (package.success == false)
 			{
 				Console.WriteLine("unknown error.");
@@ -41,7 +40,7 @@ namespace YetAnotherClient
 			Console.WriteLine("\tmaintainer:" + package.result.maintainer);
 			Console.WriteLine("\tpackage type:" + package.result.type);
 			Console.WriteLine("\tresources:");
-			foreach(var resource in package.result.resources)
+			foreach (var resource in package.result.resources)
 			{
 				Console.WriteLine("\t\tname: " + resource.name);
 				Console.WriteLine("\t\tID: " + resource.id);
@@ -51,6 +50,23 @@ namespace YetAnotherClient
 				Console.WriteLine();
 			}
 
+			// get info about last resource
+			string resource_id = package.result.resources[package.result.resources.Count - 1].id;
+			AGE.OpenData.ResourceShow resourceShow = Json.Decode<AGE.OpenData.ResourceShow>(client.resource_show(resource_id));
+			if (resourceShow.success == false)
+			{
+				Console.WriteLine("unknown error.");
+				Console.WriteLine(resourceShow.help);
+				return;
+			}
+
+			Console.WriteLine("resource info:");
+			Console.WriteLine("\t\tname: " + resourceShow.result.name);
+			Console.WriteLine("\t\tID: " + resourceShow.result.id);
+			Console.WriteLine("\t\ttype: " + resourceShow.result.resource_type);
+			Console.WriteLine("\t\tformat: " + resourceShow.result.format);
+			Console.WriteLine("\t\turl: " + resourceShow.result.url);
+			Console.WriteLine();
 		}
 	}
 }

@@ -10,7 +10,7 @@ namespace AGE
 		public class Client
 		{
 			//int api_version = 3;
-			string endpoint;
+			public string endpoint { get; set; }
 			/// <summary>
 			/// not implemented yet
 			/// </summary>
