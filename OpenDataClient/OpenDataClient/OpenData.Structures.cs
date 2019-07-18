@@ -13,6 +13,11 @@ namespace AGE
 
 		public class Resource
 		{
+			public Resource()
+			{
+				//created = DateTime.Now;
+			}
+			public string package_id { get; set; }
 			public string resource_group_id { get; set; }
 			public DateTime? cache_last_updated { get; set; }
 			public DateTime? revision_timestamp { get; set; }
@@ -32,7 +37,7 @@ namespace AGE
 			public string mimetype { get; set; }
 			public object cache_url { get; set; }
 			public string name { get; set; }
-			public DateTime created { get; set; }
+			public DateTime? created { get; set; }
 			public string url { get; set; }
 			public object webstore_url { get; set; }
 			public object mimetype_inner { get; set; }

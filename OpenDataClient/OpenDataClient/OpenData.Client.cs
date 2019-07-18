@@ -127,6 +127,15 @@ namespace AGE
 			{
 				throw new NotImplementedException();
 			}
+			/// <summary>
+			/// Appends a new resource to a datasets list of resources.
+			/// </summary>
+			/// <param name="data">resource description in JSON format</param>
+			/// <returns>the newly created resource</returns>
+			public string resource_create(string data)
+			{
+				return make_request("POST", endpoint + "action/resource_create", data);
+			}
 		}
 	}
 }

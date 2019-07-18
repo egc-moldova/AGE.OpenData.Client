@@ -12,18 +12,28 @@ namespace OpenDataManager
 
 			// Create package if need.
 			// Otherwise specify a package id were resource will be placed
-			
-			AGE.OpenData.Package package = new AGE.OpenData.Package();
-			package.name = System.Guid.NewGuid().ToString();
-			package.type = "dataset";
-			package.url = "http://testdate.gov.md/ckan/dataset/" + package.name;
-
+			AGE.OpenData.Package package = new AGE.OpenData.Package()
+			{
+				name = System.Guid.NewGuid().ToString(),
+				type = "dataset",
+				url = "http://testdate.gov.md/ckan/dataset/datasetname"
+			};
 			string json = Json.Encode(package);
-			System.Console.WriteLine("json = " + json);
-			System.Console.WriteLine(client.package_create(json));
+
+			AGE.OpenData.PackageShow packageShow = Json.Decode<AGE.OpenData.PackageShow>(client.package_create(json));
 
 			// upload resource to server if need
 			// create resource in package
+			if (packageShow.success)
+			{
+				AGE.OpenData.Resource resource = new AGE.OpenData.Resource
+				{
+					url = "http://google.com",
+					package_id = packageShow.result.id
+				};
+				json = Json.Encode(resource);
+				System.Console.WriteLine("result = " + client.resource_create(json));
+			}
 		}
 	}
 }
