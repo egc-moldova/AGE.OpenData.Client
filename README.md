@@ -1,6 +1,7 @@
 # AGE.OpenData.Client
 ## Description
-C# client for date.gov.md
+C# client for [MDA Government Open Data](http://date.gov.md)
+You can use any [CKAN](http://ckan.org) client as alternative.
 
 ## Examples
 Example of usage:
@@ -70,4 +71,27 @@ foreach(var resource in package.result.resources)
 	Console.WriteLine("\t\turl: " + resource.url);
 	Console.WriteLine();
 }
+```
+For data publishing first at all you need to have an API Key. It can be found in a profile of CKAN user (web page).
+The scenario of data publishing is:
+* create new dataset if need (new package of resources)
+* identify dataset id were resource will be placed
+* upload file to server (if need) 
+* determine direct link to file
+* create new resource into dataset
+
+```c#
+string uri = "http://testdate.gov.md/ckan/api/3/";
+string apiKey = "<INSERT-API-KEY-HERE>";
+AGE.OpenData.Client client = new AGE.OpenData.Client(uri, apiKey);
+
+// Create package if need.
+// Otherwise identify a package id were resource will be placed
+
+AGE.OpenData.Package package = new AGE.OpenData.Package();
+package.name = "<A PACKAGE NAME HERE>";
+package.url = "http://testdate.gov.md/ckan/dataset/" + package.name;
+
+string json = Json.Encode(package);
+System.Console.WriteLine(client.package_create(json));
 ```
