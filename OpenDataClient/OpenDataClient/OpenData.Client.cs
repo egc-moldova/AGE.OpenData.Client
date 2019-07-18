@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace AGE
@@ -19,17 +18,33 @@ namespace AGE
 			/// <summary>
 			/// CKAN client constructor
 			/// </summary>
-			/// <param name="Endpoint"Reference to CKAN service</param>
+			/// <param name="Endpoint">Reference to CKAN service</param>
 			/// <param name="auth">Authentication key</param>
 			public Client(string Endpoint, string auth = null)
 			{
 				endpoint = Endpoint;
 				authentication = auth;
+				if(authentication != null)
+				{
+					client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue(authentication);
+				}
 			}
 
 			private string make_request(string method, string uri, string data = "")
 			{
-				Task<HttpResponseMessage> responseMesage = client.GetAsync(uri);
+				Task<HttpResponseMessage> responseMesage;
+				if (method.Equals("GET"))
+				{
+					responseMesage = client.GetAsync(uri);
+				}
+				else if(method.Equals("POST"))
+				{
+					responseMesage = client.PostAsync(uri, new StringContent(data));
+				}
+				else
+				{
+					throw new Exception("unsupported HTTP method");
+				}
 				Task<string> response = responseMesage.Result.Content.ReadAsStringAsync();
 				return response.Result;
 			}
@@ -39,6 +54,10 @@ namespace AGE
 			{
 				throw new NotImplementedException();
 			}
+
+
+			/// <summary>package API</summary>
+
 			/// <summary>
 			/// Return a list of the names of the site’s datasets (packages).
 			/// </summary>
@@ -71,6 +90,20 @@ namespace AGE
 			{
 				return make_request("GET", endpoint + "action/package_search?q=" + q);
 			}
+			/// <summary>
+			/// Create a new dataset (package). You must be authorized to create new datasets.
+			/// If you specify any groups for the new dataset, you must also be authorized to edit these groups.
+			/// </summary>
+			/// <param name="data"></param>
+			/// <returns>the newly created dataset (unless ‘return_id_only’ is set to True in the context, 
+			/// in which case just the dataset id will be returned)</returns>
+			public string package_create(string data)
+			{
+				return make_request("POST", endpoint + "action/package_create", data);
+			}
+
+			/// <summary>resource API</summary>
+			
 			/// <summary>
 			/// Return the metadata of a resource.
 			/// </summary>

@@ -89,18 +89,30 @@ namespace AGE
 			public string value { get; set; }
 		}
 
-		public class Result
+		public class Package
 		{
+			public Package()
+			{
+				groups = new System.Collections.Generic.List<AGE.OpenData.Group>();
+				relationships_as_object = new System.Collections.Generic.List<object>();
+				relationships_as_subject = new System.Collections.Generic.List<object>();
+				resources = new System.Collections.Generic.List<AGE.OpenData.Resource>();
+				extras = new System.Collections.Generic.List<AGE.OpenData.Extra>();
+				tags = new System.Collections.Generic.List<AGE.OpenData.Tag>();
+				type = "dataset";
+				@private = false;
+				isopen = true;
+			}
 			public string license_title { get; set; }
 			public string maintainer { get; set; }
 			public List<object> relationships_as_object { get; set; }
 			public bool @private { get; set; }
 			public string maintainer_email { get; set; }
-			public DateTime revision_timestamp { get; set; }
+			public DateTime? revision_timestamp { get; set; }
 			public string id { get; set; }
-			public DateTime metadata_created { get; set; }
-			public DateTime metadata_modified { get; set; }
-			public object author { get; set; }
+			public DateTime? metadata_created { get; set; }
+			public DateTime? metadata_modified { get; set; }
+			public string author { get; set; }
 			public object author_email { get; set; }
 			public string state { get; set; }
 			public object version { get; set; }
@@ -113,11 +125,11 @@ namespace AGE
 			public List<Group> groups { get; set; }
 			public string license_id { get; set; }
 			public List<object> relationships_as_subject { get; set; }
-			public int num_tags { get; set; }
+			public int? num_tags { get; set; }
 			public Organization organization { get; set; }
 			public string name { get; set; }
 			public bool isopen { get; set; }
-			public object url { get; set; }
+			public string url { get; set; }
 			public string notes { get; set; }
 			public string owner_org { get; set; }
 			public List<Extra> extras { get; set; }
@@ -129,7 +141,7 @@ namespace AGE
 		{
 			public string help { get; set; }
 			public bool success { get; set; }
-			public Result result { get; set; }
+			public Package result { get; set; }
 		}
 
 		public class PackageList
