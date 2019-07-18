@@ -30,7 +30,7 @@ namespace AGE
 				}
 			}
 
-			private string make_request(string method, string uri, string data = "")
+			private string make_request(string method, string uri, string data = "", string filepath = null)
 			{
 				Task<HttpResponseMessage> responseMesage;
 				if (method.Equals("GET"))
@@ -39,7 +39,16 @@ namespace AGE
 				}
 				else if(method.Equals("POST"))
 				{
-					responseMesage = client.PostAsync(uri, new StringContent(data));
+					MultipartFormDataContent content = new MultipartFormDataContent();
+					content.Add(new StringContent(data));
+					if (null != filepath)
+					{
+						System.IO.Stream fileStream = System.IO.File.OpenRead(filepath);
+						content = new MultipartFormDataContent();
+						content.Add(new StreamContent(fileStream));
+					}
+
+					responseMesage = client.PostAsync(uri, content);
 				}
 				else
 				{
@@ -132,9 +141,10 @@ namespace AGE
 			/// </summary>
 			/// <param name="data">resource description in JSON format</param>
 			/// <returns>the newly created resource</returns>
-			public string resource_create(string data)
+			public string resource_create(string data, string filepath = null)
 			{
-				return make_request("POST", endpoint + "action/resource_create", data);
+				// TODO # : implement file upload				
+				return make_request("POST", endpoint + "action/resource_create", data, filepath);
 			}
 		}
 	}

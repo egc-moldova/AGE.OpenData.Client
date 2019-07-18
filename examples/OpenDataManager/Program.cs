@@ -11,7 +11,7 @@ namespace OpenDataManager
 			AGE.OpenData.Client client = new AGE.OpenData.Client(uri, apiKey);
 
 			// Create package if need.
-			// Otherwise specify a package id were resource will be placed
+			// Otherwise specify a package id or name were resource will be placed
 			AGE.OpenData.Package package = new AGE.OpenData.Package()
 			{
 				name = System.Guid.NewGuid().ToString(),
