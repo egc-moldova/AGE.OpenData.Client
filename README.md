@@ -42,7 +42,8 @@ static void Main(string[] args)
 	}
 
 	// show info about first selected package
-	AGE.OpenData.PackageShow package = Json.Decode<AGE.OpenData.PackageShow>(client.package_show(packageList.result[0]));
+	AGE.OpenData.PackageShow package = Json.Decode<AGE.OpenData.PackageShow>(
+		client.package_show(packageList.result[0]));
 	if (package.success == false)
 	{
 		Console.WriteLine("unknown error.");
@@ -90,7 +91,8 @@ static void Main(string[] args)
 	};
 	string json = Json.Encode(package);
 
-	AGE.OpenData.PackageShow packageShow = Json.Decode<AGE.OpenData.PackageShow>(client.package_create(json));
+	AGE.OpenData.PackageShow packageShow = Json.Decode<AGE.OpenData.PackageShow>(
+		client.package_create(json));
 
 	// upload resource to server if need
 	// create resource in package
