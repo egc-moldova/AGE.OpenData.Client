@@ -25,7 +25,8 @@ static void Main(string[] args)
 	string uri = "http://date.gov.md/ckan/api/3/";
 	AGE.OpenData.Client client = new AGE.OpenData.Client(uri);
 	// obtain names of second 10 packages
-	AGE.OpenData.PackageList packageList = Json.Decode<AGE.OpenData.PackageList>(client.package_list(10, 10));
+	AGE.OpenData.PackageList packageList = Json.Decode<AGE.OpenData.PackageList>(
+		client.package_list(10, 10));
 
 	// if request was failed, show error message
 	if (packageList.success == false)
